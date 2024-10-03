@@ -89,8 +89,8 @@ export function parkourTranslate(mode: string, text: string): string {
     }
 
     function translateParkourToEnglish(text: string): string {
-        let topLine = text.split("\n")[0];
-        let bottomLine = text.split("\n")[1];
+        const topLine = text.split("\n")[0];
+        const bottomLine = text.split("\n")[1];
 
         let english = "";
 
@@ -99,7 +99,6 @@ export function parkourTranslate(mode: string, text: string): string {
         // when the start of a character is found, add the characters to a temporary string until the code does not appear in the dictionary
         // then add the character to the final string
         let temp = "";
-        let line = "top";
         for (let i = 0; i < topLine.length; i++) {
             console.log("loop ", i);
 
@@ -107,12 +106,7 @@ export function parkourTranslate(mode: string, text: string): string {
             
             if (char === " ") {
                 char = bottomLine[i];
-                line = "bottom";
             }
-            else{
-                line = "top";
-            }
-
             temp += char;
             console.log("temp ", temp);
             // if temp is in the dictionary, continue
