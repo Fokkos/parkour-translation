@@ -1,8 +1,8 @@
 export function handleError(error: string) {
-    let dangerAlert = document.getElementById("danger-alert") as HTMLDivElement | "";
+    const dangerAlert = document.getElementById("danger-alert") as HTMLDivElement | "";
     if (dangerAlert) {
     dangerAlert.style.display = "flex";
-    let alertText = document.getElementById("alert-text") as HTMLDivElement | "";
+    const alertText = document.getElementById("alert-text") as HTMLDivElement | "";
     if (alertText) {
         alertText.innerHTML = error;
     } else {
