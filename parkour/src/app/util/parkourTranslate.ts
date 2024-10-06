@@ -67,11 +67,15 @@ export function parkourTranslate(mode: string, text: string): string {
     };
 
     function translateEnglishToParkour(text: string): string {
-        //sanitise input to caps only no spaces, nums or special chars
+        // sanitise input to caps only no spaces, nums or special chars
         text = text.replace(/[^a-zA-Z]/g, "");
         
         let topLine = "";
         let bottomLine = "";
+
+        if (text === "") {
+            return "";
+        }
         
 
         // A-M are put on top line, N-Z are put on bottom line
@@ -93,8 +97,14 @@ export function parkourTranslate(mode: string, text: string): string {
     }
 
     function translateParkourToEnglish(text: string): string {
+        // parkour can not generate special characters, so error messages begin with #
         const topLine = text.split("\n")[0];
-        const bottomLine = text.split("\n")[1];
+        let bottomLine = text.split("\n")[1];
+
+        // parkour MUST be two lines, so if it is missing the bottom line, return an error
+        if (!bottomLine) {
+            bottomLine = " ";
+        }
 
         let english = "";
 
@@ -103,7 +113,7 @@ export function parkourTranslate(mode: string, text: string): string {
         // when the start of a character is found, add the characters to a temporary string until the code does not appear in the dictionary
         // then add the character to the final string
         let temp = "";
-        for (let i = 0; i < topLine.length; i++) {
+        for (let i = 0; i < Math.max(topLine.length, bottomLine.length); i++) {
             let char = topLine[i];
             
             if (char === " ") {
@@ -130,7 +140,12 @@ export function parkourTranslate(mode: string, text: string): string {
 
             }
         }
-        
+
+        // if the parkour is invalid, then what is left from temp is not in the dictionary
+        // and so will be undefined, so send an error message back
+        if (!parkourToEnglishTop[temp]) {
+            return "#invalid";
+        }
         // add the last character
         if (topLine.slice(-1) === " ") {
             english += parkourToEnglishBottom[temp];

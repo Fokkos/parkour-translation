@@ -4,6 +4,7 @@ import React from 'react';
 import { parkourTranslate } from '../util/parkourTranslate';
 import CopyInput from './copyInput';
 import Alert from './alert';
+import { handleError } from '../util/handleError';
 
 export default function Translator() {
 
@@ -54,25 +55,19 @@ export default function Translator() {
             }
             const translatedInput = parkourTranslate(mode, inputElement.value);
             setTranslation(translatedInput);
+            // Check for errors, usually denoted by the output starting with #
             if (translatedInput === "") {
-              let dangerAlert = document.getElementById("danger-alert") as HTMLDivElement | "";
-              if (dangerAlert) {
-                dangerAlert.style.display = "flex";
-                error = true;
-                // Create a text node with the error message
-                let alertText = document.getElementById("alert-text") as HTMLDivElement | "";
-                if (alertText) {
-                  alertText.innerHTML = "Must enter text to translate.";
-                } else {
-                  console.log("Alert text not found.");
-                }
-
-              } else {
-                console.log("Alert not found.");
-              }
-
+              handleError("Must enter text to translate.");
+              error = true;
             }
-            // TODO Deal with undefined parkour to english (e.g. _AAA_ input)
+            else if (translatedInput === "#oneline") {
+              handleError("Parkour must be written on two lines.");
+              error = true;
+            } 
+            else if (translatedInput === "#invalid") {
+              handleError("Invalid parkour input, remember to include spaces.");
+              error = true;
+            }
             const modal = document.getElementById("modal") as HTMLDivElement | "";
             if (modal && !error) {
               modal.style.display = "block";
