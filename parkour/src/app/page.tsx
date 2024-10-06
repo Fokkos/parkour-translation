@@ -11,7 +11,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-2">Parkour Translator</h1>
         
         <p className="mb-4">
-          Translate your text into parkour.
+          Translate your text to and from parkour.
         </p>
         
         <Translator />
@@ -20,11 +20,9 @@ export default function Home() {
           Based on translation by <a href="https://twitter.com/sdslayer100" className="text-blue-500">@sdslayer100</a>
         </p>
         <p>
-          Created by <a href="https://twitter.com/fokkos2" className="text-blue-500">James March</a> 2024
+          Created by <a href="https://twitter.com/fokkos2" className="text-blue-500">fokkos</a> 2024
         </p>
       </div>
-      
-      <Alert/>
       </main>
     </div>
   );
