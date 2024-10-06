@@ -97,11 +97,12 @@ export default function Translator() {
           <div className="flex items-center justify-center">
             <h1 className="text-black text-lg font-bold">Translation</h1>
           </div>
-          
-          <div id="validity-text" className="text-black flex items-center justify-center hidden">
-          </div>
+
           <div id="copy-container" className="flex items-center justify-center">
             <CopyInput translation={translation}/>
+          </div>
+          <div className="pt-2 flex items-center justify-center">
+            <p className="text-black text-sm">if pasting to discord, put ``` on start and end :)</p>
           </div>
         </div>
       </div>
