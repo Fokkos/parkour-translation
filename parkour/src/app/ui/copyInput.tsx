@@ -7,7 +7,7 @@ export default function CopyInput({translation}: {translation: string}) {
   const handleCopy = () => {
     const copyText = document.getElementById('copy-button') as HTMLTextAreaElement; // Change to HTMLTextAreaElement
     if (copyText) {
-      navigator.clipboard.writeText(copyText.value.trim()).then(() => {
+      navigator.clipboard.writeText(copyText.value).then(() => {
         setIsCopied(true);
 
         // Reset the copied state after 2 seconds
