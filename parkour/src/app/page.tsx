@@ -16,9 +16,13 @@ export default function Home() {
         <Translator />
         
         <p className="mt-4">
+          Based on translation by <a href="https://twitter.com/sdslayer100" className="text-blue-500">@sdslayer100</a>
+        </p>
+        <p>
           Created by <a href="https://twitter.com/fokkos2" className="text-blue-500">James March</a> 2024
         </p>
       </div>
+      
 
       </main>
     </div>
