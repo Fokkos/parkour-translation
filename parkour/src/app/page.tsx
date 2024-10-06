@@ -1,5 +1,4 @@
 import Translator from "@/app/ui/translator";
-import Alert from "./ui/alert";
 
 export default function Home() {
 
