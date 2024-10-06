@@ -1,5 +1,9 @@
 export function parkourTranslate(mode: string, text: string): string {
 
+    if (text === "") {
+        return "";
+    }
+
     const englishToParkour: Record<string, string> = {
         A: "_",
         B: "[]",
@@ -100,15 +104,12 @@ export function parkourTranslate(mode: string, text: string): string {
         // then add the character to the final string
         let temp = "";
         for (let i = 0; i < topLine.length; i++) {
-            console.log("loop ", i);
-
             let char = topLine[i];
             
             if (char === " ") {
                 char = bottomLine[i];
             }
             temp += char;
-            console.log("temp ", temp);
             // if temp is in the dictionary, continue
             if (parkourToEnglishTop[temp]) {
                 continue;
@@ -120,26 +121,21 @@ export function parkourTranslate(mode: string, text: string): string {
                 if (parkourToEnglishTop[temp.slice(0, -1)]) {
                     if (topLine[i-1] === " ") {
                         english += parkourToEnglishBottom[temp.slice(0, -1)];
-                        console.log("bottom", temp.slice(0, -1));
                     } else {
                         english += parkourToEnglishTop[temp.slice(0, -1)];
-                        console.log("top", temp.slice(0, -1));
                     }
-                    console.log(english);
                     temp = char;
                 }
                 continue;
 
             }
         }
-
-        console.log("END temp ", temp);
+        
+        // add the last character
         if (topLine.slice(-1) === " ") {
             english += parkourToEnglishBottom[temp];
-            console.log("bottom", temp);
         } else {
             english += parkourToEnglishTop[temp];
-            console.log("top", temp);
         }
 
         return english;

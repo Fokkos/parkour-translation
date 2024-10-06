@@ -3,6 +3,7 @@ import { clsx } from 'clsx';
 import React from 'react';
 import { parkourTranslate } from '../util/parkourTranslate';
 import CopyInput from './copyInput';
+import Alert from './alert';
 
 export default function Translator() {
 
@@ -46,23 +47,43 @@ export default function Translator() {
           className="p-4 bg-blue-500 text-white rounded-lg"
           onClick={() => {
             const inputElement = document.getElementById("translator-text") as HTMLInputElement | "";
+            let error = false;
             if (!inputElement) {
               console.log("Input element not found.");
               return;
             }
-            setTranslation(parkourTranslate(mode, inputElement.value));
+            const translatedInput = parkourTranslate(mode, inputElement.value);
+            setTranslation(translatedInput);
+            if (translatedInput === "") {
+              let dangerAlert = document.getElementById("danger-alert") as HTMLDivElement | "";
+              if (dangerAlert) {
+                dangerAlert.style.display = "flex";
+                error = true;
+                // Create a text node with the error message
+                let alertText = document.getElementById("alert-text") as HTMLDivElement | "";
+                if (alertText) {
+                  alertText.innerHTML = "Must enter text to translate.";
+                } else {
+                  console.log("Alert text not found.");
+                }
+
+              } else {
+                console.log("Alert not found.");
+              }
+
+            }
             // TODO Deal with undefined parkour to english (e.g. _AAA_ input)
             const modal = document.getElementById("modal") as HTMLDivElement | "";
-            if (modal) {
+            if (modal && !error) {
               modal.style.display = "block";
-            } else {
-              console.log("Modal not found.");
             }
           }}
         >
           Translate
         </button>
     </form>
+
+    <Alert/>
 
     <div
       id="modal"
@@ -77,7 +98,7 @@ export default function Translator() {
       }}
     >
       <div className="flex items-center justify-center fixed inset-0">
-        <div className="bg-white p-4 rounded-lg w-1/5">
+        <div className="bg-white p-4 rounded-lg w-1/5 min-w-[320px]">
           <div className="flex items-center justify-center">
             <h1 className="text-black text-lg font-bold">Translation</h1>
           </div>
