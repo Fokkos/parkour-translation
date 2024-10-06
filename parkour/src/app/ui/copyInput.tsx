@@ -17,7 +17,7 @@ export default function CopyInput({translation}: {translation: string}) {
   };
 
   return (
-    <div className="w-full max-w-[16rem]">
+    <div className="w-full max-w-[16rem] md:max-w-[28vw]">
       <div className="relative">
         <label htmlFor="copy-button" className="sr-only">
           Label
@@ -25,7 +25,7 @@ export default function CopyInput({translation}: {translation: string}) {
         {/* TODO: make a regular input or textarea depending on translation type */}
         <textarea
           id="copy-button"
-          className="col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className=" pl-[5px] pr-[30px] col-span-6 bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
           value={translation} // Example multi-line text
           rows={2} // Set the number of visible rows
           disabled

@@ -93,7 +93,7 @@ export default function Translator() {
       }}
     >
       <div className="flex items-center justify-center fixed inset-0">
-        <div className="bg-white p-4 rounded-lg w-1/5 min-w-[320px]">
+        <div className="bg-white p-4 rounded-lg w-1/5 md:w-[30vw] min-w-[320px]">
           <div className="flex items-center justify-center">
             <h1 className="text-black text-lg font-bold">Translation</h1>
           </div>
