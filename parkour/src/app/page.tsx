@@ -1,4 +1,5 @@
 import Translator from "@/app/ui/translator";
+import Alert from "./ui/alert";
 
 export default function Home() {
 
@@ -23,7 +24,7 @@ export default function Home() {
         </p>
       </div>
       
-
+      <Alert/>
       </main>
     </div>
   );
